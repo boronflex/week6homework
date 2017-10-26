@@ -5,7 +5,7 @@
 $(document).ready(function() {
 
 	var myYachtRockers = ["Michael McDonald", "Kenny Loggins", "George Benson", 
-	"Boz Scaggs", "James Ingram", "Christopher Cross"];
+	"Boz Scaggs", "James Ingram", "Christopher Cross", "Ray Parker Jr"];
 	
 	
 	function addButtons(){
@@ -14,7 +14,8 @@ $(document).ready(function() {
 
 		myYachtRockers.forEach(function(yachtRocker){
 
-			$("#button-div").prepend($("<button>", {class: "yacht-rocker"}).text(yachtRocker)
+			$("#button-div").prepend($("<button>", {class: "yacht-rocker"})
+				.text(yachtRocker)
 				.css({
 					"float":"left",
 					"margin": "0px 5px 0px 5px",
@@ -65,8 +66,14 @@ $(document).ready(function() {
 
 				motion = response.data[x].images.fixed_height.url;
 
-				$("#add-gifs-divs").append($("<img>", {src: still, alt: rocker, motion: motion, still: still,
-				 "class": "yr-gif"}).attr("state","still"));
+				$("#add-gifs-divs").append($("<img>", {
+					src: still,
+					alt: rocker,
+					motion: motion,
+					still: still,
+				 	state: "still",
+				 	class: "yr-gif"
+				 }));
 
 				$("#add-gifs-divs").append($("<p>").text("Rating: " + response.data[x].rating))
 				$("#add-gifs-divs").append($("<br>"))
