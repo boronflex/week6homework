@@ -6,8 +6,8 @@ $(document).ready(function() {
 // 1. Before you can make any part of our site work, you need to create an array of strings, each one related to a topic that interests you. Save it to a variable called `topics`. 
 //    * We chose animals for our theme, but you can make a list to your own liking.
 
-	var topics = ["Michael McDonald", "Kenny Loggins", "Al Jarreau", "George Benson", 
-	"Quincy Jones"];
+	var myYachtRockers = ["Michael McDonald", "Kenny Loggins", "Al Jarreau", "George Benson", 
+	"Boz Scaggs", "Michael Jackson"];
 
 // 2. Your app should take the topics in this array and create buttons in your HTML.
 //    * Try using a loop that appends a button for each string in the array.
@@ -15,7 +15,7 @@ $(document).ready(function() {
 	
 	function addButtons(){
 
-		topics.forEach(function(yachtRocker){
+		myYachtRockers.forEach(function(yachtRocker){
 			//create buttons from the list and add them to the 'button-div' div here
 
 			var newButton = $("<button>", {class: "yacht-rocker"}).text(yachtRocker);
@@ -43,11 +43,15 @@ $(document).ready(function() {
 	var motion = "";
 
 
-	$(".yacht-rocker").click(function(){
+	$("#button-div").on("click", ".yacht-rocker", function(){
+
+	//$(".yacht-rocker").click(function(){
 
 		$("#add-gifs-divs").empty();
 
 		var rocker = $(this).text();
+
+		console.log(rocker);
 
 		rocker = rocker.replace(" ", "+");
 
@@ -67,6 +71,7 @@ $(document).ready(function() {
 
 				$("#add-gifs-divs").append($("<img>", {src: still, alt: rocker, "class": "yr-gif"}).attr("state","still"));
 
+				$("#add-gifs-divs").append($("<p>").text(response.data[x].rating))
 				//console.log(still);
 
 				//console.log(motion);
@@ -76,7 +81,7 @@ $(document).ready(function() {
 
 	});
 
-	$(document).on("click", ".yr-gif", function(){
+	$("#add-gifs-divs").on("click", ".yr-gif", function(){
 
 		//console.log(this);
 
