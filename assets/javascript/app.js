@@ -15,6 +15,8 @@ $(document).ready(function() {
 	
 	function addButtons(){
 
+		$("#button-div").empty();
+
 		myYachtRockers.forEach(function(yachtRocker){
 			//create buttons from the list and add them to the 'button-div' div here
 
@@ -32,9 +34,9 @@ $(document).ready(function() {
 
 	$("#add-rocker").click(function(){
 
-		var newButton = $("<button>", {class: "yacht-rocker"}).text($("#input-box").val());
+		myYachtRockers.push($("#input-box").val())
 
-		$("#button-div").prepend(newButton).css({"float":"left"});
+		addButtons();
 		
 	})
 
