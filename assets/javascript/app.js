@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 		var newButton = $("<button>", {class: "yacht-rocker"}).text(yachtRocker);
 
-		$("#button-div").append(newButton).css({"float":"left"});
+		$("#button-div").prepend(newButton).css({"float":"left"});
 
 		//combine this into one later
 
@@ -24,6 +24,8 @@ $(document).ready(function() {
 
 
 	$(".yacht-rocker").click(function(){
+
+		$("#add-gifs-divs").empty();
 
 		var rocker = $(this).text();
 
@@ -44,8 +46,11 @@ $(document).ready(function() {
 			var still = ""
 
 			for (x=0; x<=9; x+=1){
-				
+
 				still = response.data[x].images.fixed_height_still.url;
+
+				$("#add-gifs-divs").append($("<img>", {src: still, alt: rocker}));
+
 				console.log(still);
 
 			}
