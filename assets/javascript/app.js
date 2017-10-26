@@ -11,16 +11,35 @@ $(document).ready(function() {
 // 2. Your app should take the topics in this array and create buttons in your HTML.
 //    * Try using a loop that appends a button for each string in the array.
 	
-	topics.forEach(function(yachtRocker){
-		//create buttons from the list and add them to the 'button-div' div here
+	
+	function addButtons(){
 
-		var newButton = $("<button>", {class: "yacht-rocker"}).text(yachtRocker);
+		topics.forEach(function(yachtRocker){
+			//create buttons from the list and add them to the 'button-div' div here
+
+			var newButton = $("<button>", {class: "yacht-rocker"}).text(yachtRocker);
+
+			$("#button-div").prepend(newButton).css({"float":"left"});
+
+			//combine this into one later
+
+		});
+
+	}
+
+	addButtons();
+
+	$("#add-rocker").click(function(){
+
+		var newButton = $("<button>", {class: "yacht-rocker"}).text($("#input-box").val());
 
 		$("#button-div").prepend(newButton).css({"float":"left"});
+		
+	})
 
-		//combine this into one later
+	var still = "";
 
-	});
+	var motion = "";
 
 
 	$(".yacht-rocker").click(function(){
@@ -34,31 +53,38 @@ $(document).ready(function() {
 		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         rocker + "&api_key=dc6zaTOxFJmzC&limit=10";
 
-        console.log(queryURL)
-
 		$.ajax({
 			url: queryURL,
 			method: "GET"
 		}).done(function(response){
 
-			console.log(response.data)
-
-			var still = ""
-
 			for (x=0; x<=9; x+=1){
 
 				still = response.data[x].images.fixed_height_still.url;
 
-				$("#add-gifs-divs").append($("<img>", {src: still, alt: rocker}));
+				motion = response.data[x].url;
 
-				console.log(still);
+				$("#add-gifs-divs").append($("<img>", {src: still, alt: rocker, "class": "yr-gif"}).attr("state","still"));
 
+				//console.log(still);
+
+				//console.log(motion);
 			}
 
 		})
 
+	});
 
-	})
+	$("<img>").click(function(){
+
+		console.log("clicked an image");
+
+		// $(this).attr({
+		//     "state": "motion", 
+		//    	"src": motion
+		// });
+
+	});
 
 
 
