@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+
 //the dynamic elements exercise from week6 will be a good reference and example for this exercise
 
 // 1. Before you can make any part of our site work, you need to create an array of strings, each one related to a topic that interests you. Save it to a variable called `topics`. 
@@ -75,14 +76,14 @@ $(document).ready(function() {
 
 	});
 
-	$("<img>").click(function(){
+	$(document).on("click", ".yr-gif", function(){
 
-		console.log("clicked an image");
+		//console.log(this);
 
-		// $(this).attr({
-		//     "state": "motion", 
-		//    	"src": motion
-		// });
+		$(this).attr({
+		    "state": "motion", 
+		   	"src": motion
+		});
 
 	});
 
