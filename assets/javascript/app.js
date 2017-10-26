@@ -14,15 +14,48 @@ $(document).ready(function() {
 	topics.forEach(function(yachtRocker){
 		//create buttons from the list and add them to the 'button-div' div here
 
-		var newButton = $("<button>", {id: yachtRocker}).text(yachtRocker);
+		var newButton = $("<button>", {class: "yacht-rocker"}).text(yachtRocker);
 
-		$("#button-div").append(newButton).append("<br>");
+		$("#button-div").append(newButton).css({"float":"left"});
 
 		//combine this into one later
 
-
-
 	});
+
+
+	$(".yacht-rocker").click(function(){
+
+		var rocker = $(this).text();
+
+		rocker = rocker.replace(" ", "+");
+
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        rocker + "&api_key=dc6zaTOxFJmzC&limit=10";
+
+        console.log(queryURL)
+
+		$.ajax({
+			url: queryURL,
+			method: "GET"
+		}).done(function(response){
+
+			console.log(response.data)
+
+			var still = ""
+
+			for (x=0; x<=9; x+=1){
+				
+				still = response.data[x].images.fixed_height_still.url;
+				console.log(still);
+
+			}
+
+		})
+
+
+	})
+
+
 
 
 // 3. When the user clicks on a button, the page should grab 10 static, non-animated gif images from the GIPHY API and place them on the page. 
